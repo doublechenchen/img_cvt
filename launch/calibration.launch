@@ -1,0 +1,19 @@
+<?xml version="1" encoding="utf-8"?>
+<launch>
+  <!-- Initialize the camera -->
+  <include file="$(find img_cvt)/launch/camera.launch" />
+
+  <node name="image_converter" pkg="img_cvt" type="img_cvt_node" >
+    <?remap from="/camera_info" to="/virtual_cam/camera_info" /?>
+  </node>
+
+  <?node name="raw" pkg="image_view" type="image_view">
+    <remap from="image" to="/usb_cam/image_raw"/>
+  </node?>
+  <?node name="rect" pkg="image_view" type="image_view">
+    <remap from="image" to="/virtual_cam/image_raw"/>
+  </node?>
+
+  <node name="calibrator" pkg="camera_calibration" type="cameracalibrator.py" args="--size 8x6 --square 0.025 image:=/virtual_cam/image_raw camera:=/virtual_cam --no-service-check"/>
+
+</launch>
