@@ -43,7 +43,7 @@ public:
     }
 
     // Resize
-    cv_ptr->image= cv_ptr->image(cv::Rect(461,41,1000,1000));
+    cv_ptr->image= cv_ptr->image(cv::Rect(0,0,320,240));
     //cv::Mat temp;
     //cv_ptr->image.copyTo(temp);
     //imwrite("~/Desktop/img/file.jpg",temp);
